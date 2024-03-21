@@ -1,0 +1,4390 @@
+openapi: 3.0.1
+info:
+  description: |-
+    ## Authentication
+
+    Authenticate with the API using Basic Auth, get API keys in the project settings:
+
+    - username: Langfuse Public Key
+    - password: Langfuse Secret Key
+  title: langfuse
+  version: ""
+  x-konfig-ignore:
+    object-with-no-properties: true
+servers:
+- description: EU
+  url: https://cloud.langfuse.com
+- description: US
+  url: https://us.cloud.langfuse.com
+tags:
+- name: Score
+- name: Datasets
+- name: DatasetItems
+- name: Observations
+- name: Prompts
+- name: Trace
+- name: DatasetRunItems
+- name: Health
+- name: Ingestion
+- name: Metrics
+- name: Projects
+- name: Sessions
+paths:
+  /api/public/dataset-items:
+    post:
+      description: Create a dataset item
+      operationId: datasetItems_create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetItemRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItem'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsCreateResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsCreate401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsCreate403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsCreate404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsCreate405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - DatasetItems
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-public-dataset-items
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/public/dataset-items/{id}:
+    get:
+      description: Get a dataset item
+      operationId: datasetItems_get
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItem'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItemsGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - DatasetItems
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-dataset-items-id
+      x-accepts: application/json
+  /api/public/dataset-run-items:
+    post:
+      description: Create a dataset run item
+      operationId: datasetRunItems_create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRunItemRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRunItem'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRunItemsCreateResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRunItemsCreate401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRunItemsCreate403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRunItemsCreate404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRunItemsCreate405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - DatasetRunItems
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-public-dataset-run-items
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/public/datasets/{datasetName}:
+    get:
+      description: Get a dataset and its items
+      operationId: datasets_get
+      parameters:
+      - explode: false
+        in: path
+        name: datasetName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Datasets
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-datasets-datasetName
+      x-accepts: application/json
+  /api/public/datasets:
+    post:
+      description: Create a dataset
+      operationId: datasets_create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsCreateResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsCreate401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsCreate403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsCreate404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsCreate405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Datasets
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-public-datasets
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/public/datasets/{datasetName}/runs/{runName}:
+    get:
+      description: Get a dataset run and its items
+      operationId: datasets_getRuns
+      parameters:
+      - explode: false
+        in: path
+        name: datasetName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: runName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetRun'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGetRunsResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGetRuns401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGetRuns403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGetRuns404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetsGetRuns405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Datasets
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-datasets-datasetName-runs-runName
+      x-accepts: application/json
+  /api/public/health:
+    get:
+      description: Check health of API and database
+      operationId: health_health
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthHealthResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthHealth401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthHealth403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthHealth404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthHealth405Response'
+          description: ""
+          x-do-not-generate: true
+        "503":
+          description: ""
+      tags:
+      - Health
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-health
+      x-accepts: application/json
+  /api/public/ingestion:
+    post:
+      description: Batched ingestion for Langfuse Tracing
+      operationId: ingestion_batch
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestionBatchRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionBatchResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionBatch401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionBatch403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionBatch404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestionBatch405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Ingestion
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-public-ingestion
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/public/metrics/daily:
+    get:
+      description: Get daily metrics of the Langfuse project
+      operationId: metrics_daily
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - description: Optional filter by the name of the trace
+        explode: true
+        in: query
+        name: traceName
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: Optional filter by the userId associated with the trace
+        explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: Optional filter for metrics where traces include all of these
+          tags
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          items:
+            nullable: true
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyMetrics'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsDailyResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsDaily401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsDaily403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsDaily404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsDaily405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Metrics
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-metrics-daily
+      x-accepts: application/json
+  /api/public/observations/{observationId}:
+    get:
+      description: Get a observation
+      operationId: observations_get
+      parameters:
+      - description: "The unique langfuse identifier of an observation, can be an\
+          \ event, span or generation"
+        explode: false
+        in: path
+        name: observationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Observation'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Observations
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-observations-observationId
+      x-accepts: application/json
+  /api/public/observations:
+    get:
+      description: Get a list of observations
+      operationId: observations_getMany
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: traceId
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: parentObservationId
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsViews'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGetManyResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGetMany401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGetMany403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGetMany404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsGetMany405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Observations
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-observations
+      x-accepts: application/json
+  /api/public/projects:
+    get:
+      description: Get Project associated with API key
+      operationId: projects_get
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectsGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Projects
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-projects
+      x-accepts: application/json
+  /api/public/prompts:
+    get:
+      description: Get a prompt
+      operationId: prompts_get
+      parameters:
+      - explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Prompts
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-prompts
+      x-accepts: application/json
+    post:
+      description: Create a prompt
+      operationId: prompts_create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePromptRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prompt'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsCreateResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsCreate401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsCreate403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsCreate404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptsCreate405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Prompts
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-public-prompts
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/public/scores:
+    get:
+      description: Get a list of scores
+      operationId: score_get
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Scores'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Score
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-scores
+      x-accepts: application/json
+    post:
+      description: Create a score
+      operationId: score_create
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateScoreRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Score'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreCreateResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreCreate401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreCreate403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreCreate404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreCreate405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Score
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-public-scores
+      x-content-type: application/json
+      x-accepts: application/json
+  /api/public/scores/{scoreId}:
+    delete:
+      description: Delete a score
+      operationId: score_delete
+      parameters:
+      - description: The unique langfuse identifier of a score
+        explode: false
+        in: path
+        name: scoreId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreDeleteResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreDelete401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreDelete403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreDelete404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreDelete405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Score
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-delete--api-public-scores-scoreId
+      x-accepts: application/json
+    get:
+      description: Get a score
+      operationId: Score_getById
+      parameters:
+      - description: The unique langfuse identifier of a score
+        explode: false
+        in: path
+        name: scoreId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Score'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGetByIdResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGetById401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGetById403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGetById404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreGetById405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Score
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-scores-scoreId
+      x-accepts: application/json
+  /api/public/sessions/{sessionId}:
+    get:
+      description: Get a session
+      operationId: sessions_get
+      parameters:
+      - description: The unique id of a session
+        explode: false
+        in: path
+        name: sessionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionsGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionsGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionsGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionsGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionsGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Sessions
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-sessions-sessionId
+      x-accepts: application/json
+  /api/public/traces/{traceId}:
+    get:
+      description: Get a specific trace
+      operationId: trace_get
+      parameters:
+      - description: The unique langfuse identifier of a trace
+        explode: false
+        in: path
+        name: traceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trace'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceGetResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceGet401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceGet403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceGet404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceGet405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Trace
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-traces-traceId
+      x-accepts: application/json
+  /api/public/traces:
+    get:
+      description: Get list of traces
+      operationId: trace_list
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: "Format of the string [field].[asc/desc]. Fields: id, timestamp,\
+          \ name, userId, release, version, public, bookmarked, sessionId. Example:\
+          \ timestamp.asc"
+        explode: true
+        in: query
+        name: orderBy
+        required: false
+        schema:
+          nullable: true
+          type: string
+        style: form
+      - description: Only traces that include all of these tags will be returned.
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          items:
+            nullable: true
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Traces'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceListResponse'
+          description: ""
+          x-do-not-generate: true
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceList401Response'
+          description: ""
+          x-do-not-generate: true
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceList403Response'
+          description: ""
+          x-do-not-generate: true
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceList404Response'
+          description: ""
+          x-do-not-generate: true
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceList405Response'
+          description: ""
+          x-do-not-generate: true
+      security:
+      - BasicAuth: []
+      tags:
+      - Trace
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-public-traces
+      x-accepts: application/json
+components:
+  schemas:
+    Trace:
+      example:
+        output: ""
+        input: ""
+        metadata: ""
+        public: true
+        release: release
+        name: name
+        id: id
+        sessionId: sessionId
+        version: version
+        userId: userId
+        tags:
+        - tags
+        - tags
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+        version:
+          nullable: true
+          type: string
+        id:
+          description: The unique identifier of a trace
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        name:
+          nullable: true
+          type: string
+        input:
+          nullable: true
+        output:
+          nullable: true
+        sessionId:
+          nullable: true
+          type: string
+        release:
+          nullable: true
+          type: string
+        userId:
+          nullable: true
+          type: string
+        metadata:
+          nullable: true
+        public:
+          description: Public traces are accessible via url without login
+          nullable: true
+          type: boolean
+      required:
+      - id
+      - timestamp
+      title: Trace
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Session:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        projectId: projectId
+      properties:
+        id:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        projectId:
+          type: string
+      required:
+      - createdAt
+      - id
+      - projectId
+      title: Session
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Observation:
+      example:
+        traceId: traceId
+        metadata: ""
+        parentObservationId: parentObservationId
+        completionStartTime: 2000-01-23T04:56:07.000+00:00
+        level: null
+        usage:
+          output: 6
+          input: 0
+          inputCost: 5.962133916683182
+          total: 1
+          unit: null
+          outputCost: 5.637376656633329
+          totalCost: 2.3021358869347655
+        type: type
+        version: version
+        statusMessage: statusMessage
+        output: ""
+        input: ""
+        modelParameters:
+          key: null
+        promptId: promptId
+        name: name
+        startTime: 2000-01-23T04:56:07.000+00:00
+        model: model
+        id: id
+        endTime: 2000-01-23T04:56:07.000+00:00
+      properties:
+        version:
+          nullable: true
+          type: string
+        id:
+          type: string
+        traceId:
+          nullable: true
+          type: string
+        type:
+          type: string
+        name:
+          nullable: true
+          type: string
+        startTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          nullable: true
+          type: string
+        completionStartTime:
+          format: date-time
+          nullable: true
+          type: string
+        model:
+          nullable: true
+          type: string
+        modelParameters:
+          additionalProperties:
+            $ref: '#/components/schemas/MapValue'
+          nullable: true
+          type: object
+        input:
+          nullable: true
+        metadata:
+          nullable: true
+        output:
+          nullable: true
+        usage:
+          $ref: '#/components/schemas/Usage'
+        level:
+          $ref: '#/components/schemas/ObservationLevel'
+        statusMessage:
+          nullable: true
+          type: string
+        parentObservationId:
+          nullable: true
+          type: string
+        promptId:
+          nullable: true
+          type: string
+      required:
+      - id
+      - level
+      - startTime
+      - type
+      title: Observation
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Usage:
+      description: Standard interface for usage and cost
+      example:
+        output: 6
+        input: 0
+        inputCost: 5.962133916683182
+        total: 1
+        unit: null
+        outputCost: 5.637376656633329
+        totalCost: 2.3021358869347655
+      properties:
+        input:
+          description: Number of input units (e.g. tokens)
+          nullable: true
+          type: integer
+        output:
+          description: Number of output units (e.g. tokens)
+          nullable: true
+          type: integer
+        total:
+          description: Defaults to input+output if not set
+          nullable: true
+          type: integer
+        unit:
+          $ref: '#/components/schemas/ModelUsageUnit'
+        inputCost:
+          description: USD input cost
+          format: double
+          nullable: true
+          type: number
+        outputCost:
+          description: USD output cost
+          format: double
+          nullable: true
+          type: number
+        totalCost:
+          description: "USD total cost, defaults to input+output"
+          format: double
+          nullable: true
+          type: number
+      title: Usage
+      type: object
+    Score:
+      example:
+        traceId: traceId
+        observationId: observationId
+        name: name
+        comment: comment
+        id: id
+        source: null
+        value: 0.8008281904610115
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        traceId:
+          type: string
+        name:
+          type: string
+        value:
+          format: double
+          type: number
+        source:
+          $ref: '#/components/schemas/ScoreSource'
+        observationId:
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        comment:
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+      - source
+      - timestamp
+      - traceId
+      - value
+      title: Score
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Dataset:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: id
+        projectId: projectId
+        items:
+        - input: ""
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          datasetId: datasetId
+          expectedOutput: ""
+          id: id
+          sourceObservationId: sourceObservationId
+          status: null
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - input: ""
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          datasetId: datasetId
+          expectedOutput: ""
+          id: id
+          sourceObservationId: sourceObservationId
+          status: null
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        runs:
+        - runs
+        - runs
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        projectId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/DatasetItem'
+          type: array
+        runs:
+          items:
+            type: string
+          type: array
+      required:
+      - createdAt
+      - id
+      - items
+      - name
+      - projectId
+      - runs
+      - updatedAt
+      title: Dataset
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    DatasetItem:
+      example:
+        input: ""
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        datasetId: datasetId
+        expectedOutput: ""
+        id: id
+        sourceObservationId: sourceObservationId
+        status: null
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/DatasetStatus'
+        input: {}
+        expectedOutput:
+          nullable: true
+        sourceObservationId:
+          nullable: true
+          type: string
+        datasetId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - datasetId
+      - id
+      - input
+      - status
+      - updatedAt
+      title: DatasetItem
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    DatasetRunItem:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        observationId: observationId
+        datasetRunId: datasetRunId
+        datasetItemId: datasetItemId
+        id: id
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        datasetRunId:
+          type: string
+        datasetItemId:
+          type: string
+        observationId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - datasetItemId
+      - datasetRunId
+      - id
+      - observationId
+      - updatedAt
+      title: DatasetRunItem
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    DatasetRun:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        datasetRunItems:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          observationId: observationId
+          datasetRunId: datasetRunId
+          datasetItemId: datasetItemId
+          id: id
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          observationId: observationId
+          datasetRunId: datasetRunId
+          datasetItemId: datasetItemId
+          id: id
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        datasetId: datasetId
+        id: id
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        datasetId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        datasetRunItems:
+          items:
+            $ref: '#/components/schemas/DatasetRunItem'
+          type: array
+      required:
+      - createdAt
+      - datasetId
+      - datasetRunItems
+      - id
+      - name
+      - updatedAt
+      title: DatasetRun
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    ModelUsageUnit:
+      description: Unit of usage in Langfuse
+      enum:
+      - CHARACTERS
+      - TOKENS
+      - MILLISECONDS
+      - SECONDS
+      - IMAGES
+      title: ModelUsageUnit
+      type: string
+    ObservationLevel:
+      enum:
+      - DEBUG
+      - DEFAULT
+      - WARNING
+      - ERROR
+      title: ObservationLevel
+      type: string
+    MapValue: {}
+    DatasetStatus:
+      enum:
+      - ACTIVE
+      - ARCHIVED
+      title: DatasetStatus
+      type: string
+    ScoreSource:
+      enum:
+      - API
+      - REVIEW
+      title: ScoreSource
+      type: string
+    CreateDatasetItemRequest:
+      example:
+        input: ""
+        datasetName: datasetName
+        expectedOutput: ""
+        id: id
+      properties:
+        datasetName:
+          type: string
+        input: {}
+        expectedOutput:
+          nullable: true
+        id:
+          description: Dataset items are upserted on their id
+          nullable: true
+          type: string
+      required:
+      - datasetName
+      - input
+      title: CreateDatasetItemRequest
+      type: object
+    CreateDatasetRunItemRequest:
+      example:
+        observationId: observationId
+        runName: runName
+        datasetItemId: datasetItemId
+      properties:
+        runName:
+          type: string
+        datasetItemId:
+          type: string
+        observationId:
+          type: string
+      required:
+      - datasetItemId
+      - observationId
+      - runName
+      title: CreateDatasetRunItemRequest
+      type: object
+    CreateDatasetRequest:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      title: CreateDatasetRequest
+      type: object
+    HealthResponse:
+      example:
+        version: 1.25.0
+        status: OK
+      properties:
+        version:
+          description: Langfuse server version
+          example: 1.25.0
+          type: string
+          x-konfig-original-example: 1.25.0
+          x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthResponse-properties-version
+        status:
+          example: OK
+          type: string
+          x-konfig-original-example: OK
+          x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthResponse-properties-status
+      required:
+      - status
+      - version
+      title: HealthResponse
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    IngestionEvent: {}
+    ObservationType:
+      enum:
+      - SPAN
+      - GENERATION
+      - EVENT
+      title: ObservationType
+      type: string
+    IngestionUsage: {}
+    OpenAIUsage:
+      description: Usage interface of OpenAI for improved compatibility.
+      properties:
+        promptTokens:
+          nullable: true
+          type: integer
+        completionTokens:
+          nullable: true
+          type: integer
+        totalTokens:
+          nullable: true
+          type: integer
+      title: OpenAIUsage
+      type: object
+    OptionalObservationBody:
+      properties:
+        version:
+          nullable: true
+          type: string
+        traceId:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        startTime:
+          format: date-time
+          nullable: true
+          type: string
+        metadata:
+          nullable: true
+        input:
+          nullable: true
+        output:
+          nullable: true
+        level:
+          $ref: '#/components/schemas/ObservationLevel'
+        statusMessage:
+          nullable: true
+          type: string
+        parentObservationId:
+          nullable: true
+          type: string
+      title: OptionalObservationBody
+      type: object
+    ObservationBody:
+      properties:
+        version:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        traceId:
+          nullable: true
+          type: string
+        type:
+          $ref: '#/components/schemas/ObservationType'
+        name:
+          nullable: true
+          type: string
+        startTime:
+          format: date-time
+          nullable: true
+          type: string
+        endTime:
+          format: date-time
+          nullable: true
+          type: string
+        completionStartTime:
+          format: date-time
+          nullable: true
+          type: string
+        model:
+          nullable: true
+          type: string
+        modelParameters:
+          additionalProperties:
+            $ref: '#/components/schemas/MapValue'
+          nullable: true
+          type: object
+        input:
+          nullable: true
+        metadata:
+          nullable: true
+        output:
+          nullable: true
+        usage:
+          $ref: '#/components/schemas/Usage'
+        level:
+          $ref: '#/components/schemas/ObservationLevel'
+        statusMessage:
+          nullable: true
+          type: string
+        parentObservationId:
+          nullable: true
+          type: string
+      required:
+      - type
+      title: ObservationBody
+      type: object
+    TraceBody:
+      properties:
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+        version:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        userId:
+          nullable: true
+          type: string
+        input:
+          nullable: true
+        output:
+          nullable: true
+        sessionId:
+          nullable: true
+          type: string
+        release:
+          nullable: true
+          type: string
+        metadata:
+          nullable: true
+        public:
+          description: Make trace publicly accessible via url
+          nullable: true
+          type: boolean
+      title: TraceBody
+      type: object
+    SDKLogBody:
+      properties:
+        log: {}
+      required:
+      - log
+      title: SDKLogBody
+      type: object
+    ScoreBody:
+      properties:
+        id:
+          nullable: true
+          type: string
+        traceId:
+          type: string
+        name:
+          type: string
+        value:
+          format: double
+          type: number
+        observationId:
+          nullable: true
+          type: string
+        comment:
+          nullable: true
+          type: string
+      required:
+      - name
+      - traceId
+      - value
+      title: ScoreBody
+      type: object
+    BaseEvent:
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+        metadata: {}
+      required:
+      - id
+      - metadata
+      - timestamp
+      title: BaseEvent
+      type: object
+    IngestionSuccess:
+      example:
+        id: id
+        status: 0
+      properties:
+        id:
+          type: string
+        status:
+          type: integer
+      required:
+      - id
+      - status
+      title: IngestionSuccess
+      type: object
+    IngestionError:
+      example:
+        id: id
+        message: message
+        error: ""
+        status: 6
+      properties:
+        id:
+          type: string
+        status:
+          type: integer
+        message:
+          nullable: true
+          type: string
+        error:
+          nullable: true
+      required:
+      - id
+      - status
+      title: IngestionError
+      type: object
+    IngestionResponse:
+      example:
+        successes:
+        - id: id
+          status: 0
+        - id: id
+          status: 0
+        errors:
+        - id: id
+          message: message
+          error: ""
+          status: 6
+        - id: id
+          message: message
+          error: ""
+          status: 6
+      properties:
+        successes:
+          items:
+            $ref: '#/components/schemas/IngestionSuccess'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/IngestionError'
+          type: array
+      required:
+      - errors
+      - successes
+      title: IngestionResponse
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    DailyMetrics:
+      example:
+        data:
+        - date: date
+          countTraces: 0
+          usage:
+          - model: model
+            totalUsage: 5
+            inputUsage: 1
+            outputUsage: 5
+          - model: model
+            totalUsage: 5
+            inputUsage: 1
+            outputUsage: 5
+          totalCost: 6.027456183070403
+        - date: date
+          countTraces: 0
+          usage:
+          - model: model
+            totalUsage: 5
+            inputUsage: 1
+            outputUsage: 5
+          - model: model
+            totalUsage: 5
+            inputUsage: 1
+            outputUsage: 5
+          totalCost: 6.027456183070403
+        meta:
+          totalItems: 9
+          limit: 7
+          totalPages: 3
+          page: 2
+      properties:
+        data:
+          description: "A list of daily metrics, only days with ingested data are\
+            \ included."
+          items:
+            $ref: '#/components/schemas/DailyMetricsDetails'
+          type: array
+        meta:
+          $ref: '#/components/schemas/utilsMetaResponse'
+      required:
+      - data
+      - meta
+      title: DailyMetrics
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    DailyMetricsDetails:
+      example:
+        date: date
+        countTraces: 0
+        usage:
+        - model: model
+          totalUsage: 5
+          inputUsage: 1
+          outputUsage: 5
+        - model: model
+          totalUsage: 5
+          inputUsage: 1
+          outputUsage: 5
+        totalCost: 6.027456183070403
+      properties:
+        date:
+          type: string
+        countTraces:
+          type: integer
+        totalCost:
+          format: double
+          type: number
+        usage:
+          items:
+            $ref: '#/components/schemas/UsageByModel'
+          type: array
+      required:
+      - countTraces
+      - date
+      - totalCost
+      - usage
+      title: DailyMetricsDetails
+      type: object
+    UsageByModel:
+      description: Daily usage of a given model. Usage corresponds to the unit set
+        for the specific model (e.g. tokens).
+      example:
+        model: model
+        totalUsage: 5
+        inputUsage: 1
+        outputUsage: 5
+      properties:
+        model:
+          type: string
+        inputUsage:
+          type: integer
+        outputUsage:
+          type: integer
+        totalUsage:
+          type: integer
+      required:
+      - inputUsage
+      - model
+      - outputUsage
+      - totalUsage
+      title: UsageByModel
+      type: object
+    Observations:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Observation'
+          type: array
+        meta:
+          $ref: '#/components/schemas/utilsMetaResponse'
+      required:
+      - data
+      - meta
+      title: Observations
+      type: object
+    ObservationsViews:
+      example:
+        data:
+        - traceId: traceId
+          metadata: ""
+          parentObservationId: parentObservationId
+          completionStartTime: 2000-01-23T04:56:07.000+00:00
+          level: null
+          usage:
+            output: 6
+            input: 0
+            inputCost: 5.962133916683182
+            total: 1
+            unit: null
+            outputCost: 5.637376656633329
+            totalCost: 2.3021358869347655
+          type: type
+          version: version
+          statusMessage: statusMessage
+          output: ""
+          input: ""
+          modelParameters:
+            key: null
+          promptId: promptId
+          name: name
+          startTime: 2000-01-23T04:56:07.000+00:00
+          model: model
+          id: id
+          endTime: 2000-01-23T04:56:07.000+00:00
+        - traceId: traceId
+          metadata: ""
+          parentObservationId: parentObservationId
+          completionStartTime: 2000-01-23T04:56:07.000+00:00
+          level: null
+          usage:
+            output: 6
+            input: 0
+            inputCost: 5.962133916683182
+            total: 1
+            unit: null
+            outputCost: 5.637376656633329
+            totalCost: 2.3021358869347655
+          type: type
+          version: version
+          statusMessage: statusMessage
+          output: ""
+          input: ""
+          modelParameters:
+            key: null
+          promptId: promptId
+          name: name
+          startTime: 2000-01-23T04:56:07.000+00:00
+          model: model
+          id: id
+          endTime: 2000-01-23T04:56:07.000+00:00
+        meta:
+          totalItems: 9
+          limit: 7
+          totalPages: 3
+          page: 2
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Observation'
+          type: array
+        meta:
+          $ref: '#/components/schemas/utilsMetaResponse'
+      required:
+      - data
+      - meta
+      title: ObservationsViews
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Projects:
+      example:
+        data:
+        - name: name
+          id: id
+        - name: name
+          id: id
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Project'
+          type: array
+      required:
+      - data
+      title: Projects
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Project:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - name
+      title: Project
+      type: object
+    CreatePromptRequest:
+      example:
+        name: name
+        isActive: true
+        prompt: prompt
+        config: ""
+      properties:
+        name:
+          type: string
+        isActive:
+          description: Should the prompt be promoted to production immediately?
+          type: boolean
+        prompt:
+          type: string
+        config:
+          nullable: true
+      required:
+      - isActive
+      - name
+      - prompt
+      title: CreatePromptRequest
+      type: object
+    Prompt:
+      example:
+        name: name
+        version: 0
+        prompt: prompt
+        config: ""
+      properties:
+        version:
+          type: integer
+        name:
+          type: string
+        prompt:
+          type: string
+        config: {}
+      required:
+      - config
+      - name
+      - prompt
+      - version
+      title: Prompt
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    CreateScoreRequest:
+      example:
+        traceId: traceId
+        observationId: observationId
+        name: name
+        comment: comment
+        id: id
+        value: 0.8008281904610115
+      properties:
+        id:
+          nullable: true
+          type: string
+        traceId:
+          type: string
+        name:
+          type: string
+        value:
+          format: double
+          type: number
+        observationId:
+          nullable: true
+          type: string
+        comment:
+          nullable: true
+          type: string
+      required:
+      - name
+      - traceId
+      - value
+      title: CreateScoreRequest
+      type: object
+    Scores:
+      example:
+        data:
+        - traceId: traceId
+          observationId: observationId
+          name: name
+          comment: comment
+          id: id
+          source: null
+          value: 0.8008281904610115
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - traceId: traceId
+          observationId: observationId
+          name: name
+          comment: comment
+          id: id
+          source: null
+          value: 0.8008281904610115
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        meta:
+          totalItems: 9
+          limit: 7
+          totalPages: 3
+          page: 2
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Score'
+          type: array
+        meta:
+          $ref: '#/components/schemas/utilsMetaResponse'
+      required:
+      - data
+      - meta
+      title: Scores
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Traces:
+      example:
+        data:
+        - output: ""
+          input: ""
+          metadata: ""
+          public: true
+          release: release
+          name: name
+          id: id
+          sessionId: sessionId
+          version: version
+          userId: userId
+          tags:
+          - tags
+          - tags
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - output: ""
+          input: ""
+          metadata: ""
+          public: true
+          release: release
+          name: name
+          id: id
+          sessionId: sessionId
+          version: version
+          userId: userId
+          tags:
+          - tags
+          - tags
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        meta:
+          totalItems: 9
+          limit: 7
+          totalPages: 3
+          page: 2
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Trace'
+          type: array
+        meta:
+          $ref: '#/components/schemas/utilsMetaResponse'
+      required:
+      - data
+      - meta
+      title: Traces
+      type: object
+      x-konfig-is-used-in-successful-response: true
+    Sort:
+      properties:
+        id:
+          type: string
+      required:
+      - id
+      title: Sort
+      type: object
+    utilsMetaResponse:
+      example:
+        totalItems: 9
+        limit: 7
+        totalPages: 3
+        page: 2
+      properties:
+        page:
+          description: current page number
+          type: integer
+        limit:
+          description: number of items per page
+          type: integer
+        totalItems:
+          description: number of total items given the current filters/selection (if
+            any)
+          type: integer
+        totalPages:
+          description: number of total pages given the current limit
+          type: integer
+      required:
+      - limit
+      - page
+      - totalItems
+      - totalPages
+      title: utilsMetaResponse
+      type: object
+    IngestionBatchRequest:
+      example:
+        batch:
+        - null
+        - null
+      properties:
+        batch:
+          items:
+            $ref: '#/components/schemas/IngestionEvent'
+          type: array
+      required:
+      - batch
+      type: object
+    DatasetItemsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsCreateResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsCreate401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsCreate403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsCreate404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsCreate405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetItemsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetItemsGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetRunItemsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetRunItemsCreateResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetRunItemsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetRunItemsCreate401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetRunItemsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetRunItemsCreate403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetRunItemsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetRunItemsCreate404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetRunItemsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetRunItemsCreate405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsCreateResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsCreate401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsCreate403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsCreate404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsCreate405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGetRunsResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGetRunsResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGetRuns401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGetRuns401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGetRuns403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGetRuns403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGetRuns404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGetRuns404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    DatasetsGetRuns405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-DatasetsGetRuns405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    HealthHealthResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthHealthResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    HealthHealth401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthHealth401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    HealthHealth403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthHealth403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    HealthHealth404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthHealth404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    HealthHealth405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-HealthHealth405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    IngestionBatchResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-IngestionBatchResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    IngestionBatch401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-IngestionBatch401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    IngestionBatch403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-IngestionBatch403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    IngestionBatch404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-IngestionBatch404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    IngestionBatch405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-IngestionBatch405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    MetricsDailyResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-MetricsDailyResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    MetricsDaily401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-MetricsDaily401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    MetricsDaily403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-MetricsDaily403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    MetricsDaily404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-MetricsDaily404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    MetricsDaily405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-MetricsDaily405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGetManyResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGetManyResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGetMany401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGetMany401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGetMany403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGetMany403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGetMany404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGetMany404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ObservationsGetMany405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ObservationsGetMany405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ProjectsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ProjectsGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ProjectsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ProjectsGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ProjectsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ProjectsGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ProjectsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ProjectsGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ProjectsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ProjectsGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsCreateResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsCreate401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsCreate403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsCreate404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    PromptsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-PromptsCreate405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreCreateResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreCreate401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreCreate403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreCreate404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreCreate405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreDeleteResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreDeleteResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreDelete401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreDelete401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreDelete403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreDelete403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreDelete404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreDelete404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreDelete405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreDelete405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGetByIdResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGetByIdResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGetById401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGetById401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGetById403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGetById403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGetById404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGetById404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    ScoreGetById405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-ScoreGetById405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    SessionsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-SessionsGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    SessionsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-SessionsGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    SessionsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-SessionsGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    SessionsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-SessionsGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    SessionsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-SessionsGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceGetResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceGet401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceGet403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceGet404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceGet405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceListResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceListResponse
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceList401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceList401Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceList403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceList403Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceList404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceList404Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    TraceList405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-konfig-original-example: {}
+      x-konfig-generated-schema: konfig-generated-schema-components-schemas-TraceList405Response
+      x-konfig-is-used-in-non-successful-response: true
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthResponse-properties-version:
+      example: 1.25.0
+      type: string
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthResponse-properties-status:
+      example: OK
+      type: string
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetItemsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetRunItemsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetRunItemsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetRunItemsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetRunItemsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetRunItemsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGetRunsResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGetRuns401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGetRuns403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGetRuns404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-DatasetsGetRuns405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthHealthResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthHealth401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthHealth403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthHealth404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-HealthHealth405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-IngestionBatchResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-IngestionBatch401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-IngestionBatch403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-IngestionBatch404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-IngestionBatch405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-MetricsDailyResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-MetricsDaily401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-MetricsDaily403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-MetricsDaily404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-MetricsDaily405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGetManyResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGetMany401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGetMany403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGetMany404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ObservationsGetMany405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ProjectsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ProjectsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ProjectsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ProjectsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ProjectsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-PromptsCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreCreateResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreCreate401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreCreate403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreCreate404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreCreate405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreDeleteResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreDelete401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreDelete403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreDelete404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreDelete405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGetByIdResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGetById401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGetById403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGetById404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-ScoreGetById405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-SessionsGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-SessionsGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-SessionsGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-SessionsGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-SessionsGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceGetResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceGet401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceGet403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceGet404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceGet405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceListResponse:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceList401Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceList403Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceList404Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-TraceList405Response:
+      example: {}
+      properties: {}
+      type: object
+      x-do-not-generate: true
+    konfig-generated-schema-single-parameter-schema-post--api-public-dataset-items:
+      properties:
+        datasetName:
+          type: string
+        input: {}
+        expectedOutput:
+          nullable: true
+        id:
+          description: Dataset items are upserted on their id
+          nullable: true
+          type: string
+      required:
+      - datasetName
+      - input
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--api-public-dataset-items-id:
+      properties:
+        id:
+          type: string
+      required:
+      - id
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - id
+    konfig-generated-schema-single-parameter-schema-post--api-public-dataset-run-items:
+      properties:
+        runName:
+          type: string
+        datasetItemId:
+          type: string
+        observationId:
+          type: string
+      required:
+      - datasetItemId
+      - observationId
+      - runName
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--api-public-datasets-datasetName:
+      properties:
+        datasetName:
+          type: string
+      required:
+      - datasetName
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - datasetName
+    konfig-generated-schema-single-parameter-schema-post--api-public-datasets:
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--api-public-datasets-datasetName-runs-runName:
+      properties:
+        datasetName:
+          type: string
+        runName:
+          type: string
+      required:
+      - datasetName
+      - runName
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - datasetName
+      - runName
+    konfig-generated-schema-single-parameter-schema-get--api-public-health:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--api-public-ingestion:
+      properties:
+        batch:
+          items:
+            $ref: '#/components/schemas/IngestionEvent'
+          type: array
+      required:
+      - batch
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--api-public-metrics-daily:
+      properties:
+        page:
+          nullable: true
+          type: integer
+        limit:
+          nullable: true
+          type: integer
+        traceName:
+          nullable: true
+          type: string
+        userId:
+          nullable: true
+          type: string
+        tags:
+          items:
+            nullable: true
+            type: string
+          type: array
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - page
+      - limit
+      - traceName
+      - userId
+      - tags
+    konfig-generated-schema-single-parameter-schema-get--api-public-observations-observationId:
+      properties:
+        observationId:
+          type: string
+      required:
+      - observationId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - observationId
+    konfig-generated-schema-single-parameter-schema-get--api-public-observations:
+      properties:
+        page:
+          nullable: true
+          type: integer
+        limit:
+          nullable: true
+          type: integer
+        name:
+          nullable: true
+          type: string
+        userId:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+        traceId:
+          nullable: true
+          type: string
+        parentObservationId:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - page
+      - limit
+      - name
+      - userId
+      - type
+      - traceId
+      - parentObservationId
+    konfig-generated-schema-single-parameter-schema-get--api-public-projects:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--api-public-prompts:
+      properties:
+        name:
+          type: string
+        version:
+          nullable: true
+          type: integer
+      required:
+      - name
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - name
+      - version
+    konfig-generated-schema-single-parameter-schema-post--api-public-prompts:
+      properties:
+        name:
+          type: string
+        isActive:
+          description: Should the prompt be promoted to production immediately?
+          type: boolean
+        prompt:
+          type: string
+        config:
+          nullable: true
+      required:
+      - isActive
+      - name
+      - prompt
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--api-public-scores:
+      properties:
+        page:
+          nullable: true
+          type: integer
+        limit:
+          nullable: true
+          type: integer
+        userId:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - page
+      - limit
+      - userId
+      - name
+    konfig-generated-schema-single-parameter-schema-post--api-public-scores:
+      properties:
+        id:
+          nullable: true
+          type: string
+        traceId:
+          type: string
+        name:
+          type: string
+        value:
+          format: double
+          type: number
+        observationId:
+          nullable: true
+          type: string
+        comment:
+          nullable: true
+          type: string
+      required:
+      - name
+      - traceId
+      - value
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-delete--api-public-scores-scoreId:
+      properties:
+        scoreId:
+          type: string
+      required:
+      - scoreId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - scoreId
+    konfig-generated-schema-single-parameter-schema-get--api-public-scores-scoreId:
+      properties:
+        scoreId:
+          type: string
+      required:
+      - scoreId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - scoreId
+    konfig-generated-schema-single-parameter-schema-get--api-public-sessions-sessionId:
+      properties:
+        sessionId:
+          type: string
+      required:
+      - sessionId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - sessionId
+    konfig-generated-schema-single-parameter-schema-get--api-public-traces-traceId:
+      properties:
+        traceId:
+          type: string
+      required:
+      - traceId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - traceId
+    konfig-generated-schema-single-parameter-schema-get--api-public-traces:
+      properties:
+        page:
+          nullable: true
+          type: integer
+        limit:
+          nullable: true
+          type: integer
+        userId:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        orderBy:
+          nullable: true
+          type: string
+        tags:
+          items:
+            nullable: true
+            type: string
+          type: array
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - page
+      - limit
+      - userId
+      - name
+      - orderBy
+      - tags
+  securitySchemes:
+    BasicAuth:
+      scheme: basic
+      type: http
+      x-konfig-globally-required-security: false
+
